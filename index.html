@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taste of Heaven | Fine Dining</title>
+    <style>
+        /* --- CSS STYLES --- */
+        :root {
+            --primary-color: #d35400; /* Burnt Orange */
+            --dark-bg: #2c3e50;
+            --light-bg: #fdfbf7;
+            --text-color: #333;
+            --font-main: 'Helvetica Neue', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background-color: #e67e22;
+        }
+
+        /* Menu Section */
+        .section-title {
+            text-align: center;
+            margin: 4rem 0 2rem;
+            font-size: 2.5rem;
+            color: var(--dark-bg);
+        }
+
+        .menu-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0 5% 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .menu-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .menu-info {
+            padding: 1.5rem;
+        }
+
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .price {
+            color: var(--primary-color);
+        }
+
+        .menu-desc {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        /* About Section */
+        .about {
+            background-color: #fff;
+            padding: 5rem 5%;
+            text-align: center;
+        }
+        
+        .about p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col {
+            margin: 1rem;
+            min-width: 200px;
+        }
+
+        .copyright {
+            border-top: 1px solid #555;
+            padding-top: 1rem;
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                background: white;
+                width: 100%;
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem 0;
+                box-shadow: 0 5px 5px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 1rem 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Taste of Heaven</div>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <ul class="nav-links">
+            <li><a href="#home" onclick="toggleMenu()">Home</a></li>
+            <li><a href="#menu" onclick="toggleMenu()">Menu</a></li>
+            <li><a href="#about" onclick="toggleMenu()">About</a></li>
+            <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Delicious Food, Memorable Moments</h1>
+            <p>Experience the finest local ingredients crafted with passion.</p>
+            <a href="#menu" class="btn">View Menu</a>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu">
+        <h2 class="section-title">Our Signature Dishes</h2>
+        <div class="menu-container">
+            <!-- Item 1 -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Pizza" class="menu-img">
+                <div class="menu-info">
+                    <div class="menu-header">
+                        <span>Margherita Pizza</span>
+                        <span class="price">$14</span>
+                    </div>
+                    <p class="menu-desc">Fresh mozzarella, tomato sauce, basil, and extra virgin olive oil.</p>
+                </div>
+            </div>
+            <!-- Item 2 -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450ff58f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Burger" class="menu-img">
+                <div class="menu-info">
+                    <div class="menu-header">
+                        <span>Truffle Burger</span>
+                        <span class="price">$18</span>
+                    </div>
+                    <p class="menu-desc">Angus beef, truffle mayo, caramelized onions, and cheddar cheese.</p>
+                </div>
+            </div>
+            <!-- Item 3 -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Drink" class="menu-img">
+                <div class="menu-info">
+                    <div class="menu-header">
+                        <span>Signature Cocktail</span>
+                        <span class="price">$12</span>
+                    </div>
+                    <p class="menu-desc">House special blend of seasonal fruits and premium spirits.</p>
+                </div>
+            </div>
+            <!-- Item 4 -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Salad" class="menu-img">
+                <div class="menu-info">
+                    <div class="menu-header">
+                        <span>Caesar Salad</span>
+                        <span class="price">$10</span>
+                    </div>
+                    <p class="menu-desc">Crisp romaine lettuce, croutons, parmesan, and caesar dressing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2 class="section-title">About Us</h2>
+        <p>Founded in 2023, Taste of Heaven brings a modern twist to classic recipes. We source our ingredients from local farmers to ensure freshness and flavor in every bite. Whether you're here for a romantic dinner or a family gathering, we guarantee an experience that satisfies the soul.</p>
+    </section>
+
+    <!-- Contact/Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Location</h3>
+                <p>123 Foodie Street<br>New York, NY 10012</p>
+            </div>
+            <div class="footer-col">
+                <h3>Hours</h3>
+                <p>Mon-Fri: 11am - 10pm<br>Sat-Sun: 10am - 11pm</p>
+            </div>
+            <div class="footer-col">
+                <h3>Contact</h3>
+                <p>(555) 123-4567<br>hello@tasteofheaven.com</p>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2023 Taste of Heaven Restaurant. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // --- JAVASCRIPT ---
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+
+</body>
+</html>
